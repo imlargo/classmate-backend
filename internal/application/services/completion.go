@@ -102,3 +102,61 @@ func GetCompletionForImage(imageBase64 string) (string, error) {
 
 	return "No se pudo obtener una respuesta.", nil
 }
+
+func GetCompletionFromText(text string) (string, error) {
+	requestBody := RequestBody{
+		Model: "o4-mini-2025-04-16",
+		Messages: []Message{
+			{
+				Role: "user",
+				Content: []Content{
+					{
+						Type: "text",
+						Text: prompt,
+					},
+					{
+						Type: "text",
+						Text: text,
+					},
+				},
+			},
+		},
+	}
+
+	jsonData, err := json.Marshal(requestBody)
+	if err != nil {
+		return "", fmt.Errorf("error marshaling request: %v", err)
+	}
+
+	req, err := http.NewRequest("POST", "https://api.openai.com/v1/chat/completions", bytes.NewBuffer(jsonData))
+	if err != nil {
+		return "", fmt.Errorf("error creating request: %v", err)
+	}
+
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Bearer "+apiKey)
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", fmt.Errorf("error making request: %v", err)
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return "", fmt.Errorf("error reading response: %v", err)
+	}
+
+	var result Response
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return "", fmt.Errorf("error unmarshaling response: %v", err)
+	}
+
+	if len(result.Choices) > 0 && result.Choices[0].Message.Content != "" {
+		return result.Choices[0].Message.Content, nil
+	}
+
+	return "No se pudo obtener una respuesta.", nil
+}

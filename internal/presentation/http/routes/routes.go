@@ -22,6 +22,7 @@ func RegisterRoutes(router *gin.Engine) {
 
 	completionsController := handlers.NewCompletionController()
 	router.POST("/process", completionsController.CreateCompletion)
+	router.GET("/process-text", completionsController.CreateCompletionText)
 }
 
 func registerDocs(router *gin.Engine) {
@@ -45,4 +46,5 @@ func registerDocs(router *gin.Engine) {
 
 	urlSwaggerJson := ginSwagger.URL(schemaUrl)
 	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, urlSwaggerJson))
+
 }

@@ -9,6 +9,7 @@ import (
 
 type CompletionController interface {
 	CreateCompletion(c *gin.Context)
+	CreateCompletionText(c *gin.Context)
 }
 
 type completionControllerImpl struct {
@@ -36,6 +37,23 @@ func (h *completionControllerImpl) CreateCompletion(c *gin.Context) {
 	}
 
 	completion, err := services.GetCompletionForImage(payload.Image)
+	if err != nil {
+		responses.ErrorInternalServerWithMessage(c, "Error al generar la respuesta: "+err.Error())
+		return
+	}
+
+	c.JSON(200, completion)
+}
+
+func (h *completionControllerImpl) CreateCompletionText(c *gin.Context) {
+	var payload requestsdto.CreateCompletionRequestText
+
+	err := c.BindJSON(&payload)
+	if err != nil {
+		responses.ErrorBadRequest(c, "Parametros invalidos")
+	}
+
+	completion, err := services.GetCompletionForImage(payload.Text)
 	if err != nil {
 		responses.ErrorInternalServerWithMessage(c, "Error al generar la respuesta: "+err.Error())
 		return
