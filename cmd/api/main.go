@@ -29,6 +29,6 @@ func main() {
 
 	routes.RegisterRoutes(router)
 
-	addr := utils.CleanHostURL(config.Config.Server.Host + ":" + config.Config.Server.Port)
+	addr := utils.CleanHostURL(":" + config.Config.Server.Port)
 	router.Run(addr)
 }
