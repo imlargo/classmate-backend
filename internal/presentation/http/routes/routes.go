@@ -22,7 +22,7 @@ func RegisterRoutes(router *gin.Engine) {
 
 	completionsController := handlers.NewCompletionController()
 	router.POST("/process", completionsController.CreateCompletion)
-	router.GET("/process-text", completionsController.CreateCompletionText)
+	router.POST("/process-text", completionsController.CreateCompletionText)
 }
 
 func registerDocs(router *gin.Engine) {
