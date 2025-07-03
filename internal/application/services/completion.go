@@ -28,9 +28,19 @@ type Message struct {
 	Content []Content `json:"content"`
 }
 
+type MessageText struct {
+	Role    string `json:"role"`
+	Content string `json:"content"`
+}
+
 type RequestBody struct {
 	Model    string    `json:"model"`
 	Messages []Message `json:"messages"`
+}
+
+type RequestBodyText struct {
+	Model    string        `json:"model"`
+	Messages []MessageText `json:"messages"`
 }
 
 type Choice struct {
@@ -103,22 +113,13 @@ func GetCompletionForImage(imageBase64 string) (string, error) {
 	return "No se pudo obtener una respuesta.", nil
 }
 
-func GetCompletionFromText(text string) (string, error) {
-	requestBody := RequestBody{
+func GetCompletionForText(imageBase64 string) (string, error) {
+	requestBody := RequestBodyText{
 		Model: "o4-mini-2025-04-16",
-		Messages: []Message{
+		Messages: []MessageText{
 			{
-				Role: "user",
-				Content: []Content{
-					{
-						Type: "text",
-						Text: prompt,
-					},
-					{
-						Type: "text",
-						Text: text,
-					},
-				},
+				Role:    "user",
+				Content: fmt.Sprintf("%s\n\n%s", prompt, imageBase64),
 			},
 		},
 	}
