@@ -18,7 +18,7 @@ func NewCompletionController() CompletionController {
 	return &completionControllerImpl{}
 }
 
-// @Summary 		Create Completion
+// @Summary 		Create Completion from image
 // @Router			/process [post]
 // @Description	Create an Completion
 // @Tags			completions

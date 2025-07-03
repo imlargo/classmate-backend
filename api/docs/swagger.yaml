@@ -49,7 +49,7 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/github_com_imlargo_butter_internal_presentation_http_responses.ErrorResponse'
-      summary: Create Completion
+      summary: Create Completion from image
       tags:
       - completions
 securityDefinitions:

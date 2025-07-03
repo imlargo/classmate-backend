@@ -31,7 +31,7 @@ const docTemplate = `{
                 "tags": [
                     "completions"
                 ],
-                "summary": "Create Completion",
+                "summary": "Create Completion from image",
                 "parameters": [
                     {
                         "description": "Problem data",
