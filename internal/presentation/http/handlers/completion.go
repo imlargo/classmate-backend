@@ -53,7 +53,7 @@ func (h *completionControllerImpl) CreateCompletionText(c *gin.Context) {
 		responses.ErrorBadRequest(c, "Parametros invalidos")
 	}
 
-	completion, err := services.GetCompletionForImage(payload.Text)
+	completion, err := services.GetCompletionForText(payload.Text)
 	if err != nil {
 		responses.ErrorInternalServerWithMessage(c, "Error al generar la respuesta: "+err.Error())
 		return
