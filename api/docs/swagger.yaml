@@ -1,0 +1,64 @@
+definitions:
+  github_com_imlargo_butter_internal_application_dto_requests.CreateCompletionRequest:
+    properties:
+      image:
+        type: string
+    type: object
+  github_com_imlargo_butter_internal_presentation_http_responses.ErrorResponse:
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+      status:
+        type: string
+    type: object
+info:
+  contact:
+    name: Default
+    url: https://default.dev
+  description: Backend service for Butter
+  license:
+    name: MIT
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Butter API
+  version: "1.0"
+paths:
+  /process:
+    post:
+      description: Create an Completion
+      parameters:
+      - description: Problem data
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_imlargo_butter_internal_application_dto_requests.CreateCompletionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Completion
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_imlargo_butter_internal_presentation_http_responses.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_imlargo_butter_internal_presentation_http_responses.ErrorResponse'
+      summary: Create Completion
+      tags:
+      - completions
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+  PushApiKey:
+    in: header
+    name: X-API-Key
+    type: apiKey
+swagger: "2.0"
