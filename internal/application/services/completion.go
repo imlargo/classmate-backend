@@ -11,7 +11,7 @@ import (
 const (
 	apiKey      = "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"
 	prompt      = "Solve the following problem. Answer only with the correct solution and a very short explanation, written in Spanish. Make sure the answer is accurate, and keep the explanation as brief and clear as possible. Give the option number and the correct solution on the first line with bold, Then, on a second line, give the explanation"
-	openAIModel = "o4-mini-2025-04-16"
+	openAIModel = "gpt-4.1-2025-04-14"
 )
 
 type ImageURL struct {
