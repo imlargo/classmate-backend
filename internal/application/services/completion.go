@@ -11,7 +11,7 @@ import (
 const (
 	apiKey      = "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"
 	prompt      = "Resuelve el siguiente problema de redes y telecomunicaciones. Si la pregunta tiene una sola respuesta correcta, responde únicamente con el número de la opción y el texto de la respuesta en la primera línea en negrita. Si la pregunta tiene varias respuestas correctas, enumera solamente esas opciones (número y texto) en la primera línea en negrita.Siempre incluye después una justificación breve en español, explicando por qué esa respuesta es correcta, de forma clara y concisa.No incluyas respuestas incorrectas ni explicaciones irrelevantes."
-	openAIModel = "o4-mini-2025-04-16"
+	openAIModel = "gpt-5-2025-08-07"
 )
 
 type ImageURL struct {
