@@ -9,9 +9,9 @@ import (
 )
 
 const (
-	apiKey      = "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"
+	apiKey      = "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"
 	prompt      = "Resuelve el siguiente problema. Si la pregunta tiene una sola respuesta correcta, responde únicamente con el número de la opción (a,b,c,d) o sino con el texto de la opcion de respuesta o respuesta. Si la pregunta tiene varias respuestas correctas, responde únicamente las opciones separadas por coma en una sola linea. No incluyas justificación ni explicaciones adicionales. Solo las respuestas correctas de la forma más compacta posible. Realiza todos los cálculos y verificaciones necesarias con precisión (unidades y fórmulas correctas). Investiga/contrasta conceptos cuando aplique; evita alucinaciones y no inventes datos ni supuestos no dados. Si la información es insuficiente para una respuesta cierta, responde únicamente Información insuficiente"
-	openAIModel = "gpt-5-2025-08-07"
+	openAIModel = "gpt-6.1-sol"
 )
 
 type ImageURL struct {
